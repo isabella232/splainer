@@ -1,7 +1,3 @@
-## The Splainer!
-
-The sandbox that explains your search results for you so you don't have to go digging through explain debug! Paste in your Elasticsearch query URL and go.
-
 ## What?
 
 This is a Shopfiy fork of the [open-source Splainer app](https://github.com/o19s/splainer). We forked it so it can work seamlessly with Shopify's Elasticsearch infrastructure. Read below for details about what this app does.
