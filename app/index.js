@@ -6,7 +6,7 @@ const DIST = path.join(path.dirname(__dirname), 'node_modules');
 const STATICS = ['scripts', 'styles', 'images', 'views'];
 
  const elasticsearchUrl = function () {
-   return process.env.ELASTICSEARCH_URL || 'http://quepid-elasticsearch.dev.o19s.com:9000';
+   return process.env.ELASTICSEARCH_URL || 'http://quepid-elasticsearch.dev.o19s.com:9206';
  }
 
 const proxyServer = createProxyMiddleware('/es_proxy', { 
@@ -30,6 +30,10 @@ STATICS.forEach(function(static) {
 
 // Define proxy
 app.use('/es_proxy', proxyServer);
+
+app.get('/health', function(req, res) {
+  res.send({'STATUS': 'OK'});
+});
 
 // Render index
 app.get('/', renderIndex);
