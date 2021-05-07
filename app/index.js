@@ -31,6 +31,10 @@ STATICS.forEach(function(static) {
 // Define proxy
 app.use('/es_proxy', proxyServer);
 
+app.get('/health', function(req, res) {
+  res.send({'STATUS': 'OK'});
+});
+
 // Render index
 app.get('/', renderIndex);
 
