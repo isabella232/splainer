@@ -1,0 +1,29 @@
+---
+name: splainer
+
+up:
+  - node:
+      version: v14.16.1
+      yarn: 1.22.5
+
+commands:
+  server:
+    desc: Run live-reloading server
+    aliases: [ s, serve ]
+    run: |
+      yarn run grunt serve
+
+  style:
+    desc: Lint the JavaScript code
+    aliases: [ l, lint ]
+    run: |
+      yarn run grunt newer:jshint
+
+  test:
+    desc: Run test suite
+    aliases: [ t ]
+    run: |
+      yarn run grunt test
+
+open:
+  app: http://localhost:9000
