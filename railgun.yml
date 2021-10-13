@@ -1,0 +1,18 @@
+# https://development.shopify.io/engineering/keytech/dev/config/railgun/Railgun-Config
+name: splainer
+
+vm:
+  image:      /opt/dev/misc/railgun-images/default
+  ip_address: 192.168.64.99
+  memory:     4G
+  cores:      4
+
+volumes:
+  root:  '4G'
+
+services:
+- elasticsearch-v7
+- nginx
+
+hostnames:
+  - splainer.myshopify.io:      { proxy_to_host_port: 9000 }

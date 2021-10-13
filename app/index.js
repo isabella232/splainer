@@ -5,12 +5,23 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const DIST = path.join(path.dirname(__dirname), 'node_modules');
 const STATICS = ['scripts', 'styles', 'images', 'views'];
 
- const elasticsearchUrl = function () {
-   return process.env.ELASTICSEARCH_URL || 'http://quepid-elasticsearch.dev.o19s.com:9206';
- }
+const elasticsearchUrl = function () {
+  return process.env.ELASTICSEARCH_URL || 'http://quepid-elasticsearch.dev.o19s.com:9206';
+}
+
+const auth = function () {
+    if (process.env.ELASTICSEARCH_USER && process.env.ELASTICSEARCH_PASSWORD) {
+      console.log("found ES credentials for user " + process.env.ELASTICSEARCH_USER);
+
+      return process.env.ELASTICSEARCH_USER + ':' + process.env.ELASTICSEARCH_PASSWORD;
+    }
+
+    return undefined;
+}
 
 const proxyServer = createProxyMiddleware('/es_proxy', { 
     target: elasticsearchUrl(), 
+    auth: auth(),
     pathRewrite: {'^/es_proxy' : ''} 
   }
 );

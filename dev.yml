@@ -1,0 +1,20 @@
+name: splainer
+
+type: node
+
+up:
+  - node:
+      yarn: true
+      version: v12.19.0
+  - railgun
+
+commands:
+  server:
+    run: node app/index.js
+
+env:
+  ELASTICSEARCH_URL: "http://splainer.railgun:9200"
+
+open:
+  app: "https://splainer.myshopify.io"
+
